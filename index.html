@@ -3,74 +3,592 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Воздушная гимнастика | Профессиональные тренировки</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Воздушная школа Лилии Сычёвой | Спортивная воздушная школа Синяя Огневой</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #4a6baf;
+            --secondary: #e91e63;
+            --accent: #ff9800;
+            --dark: #2c3e50;
+            --light: #f8f9fa;
+            --text: #333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        /* Навигация */
+        header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            color: white;
+        }
+
+        .logo-main {
+            font-size: 1.8rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: white;
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Герой секция */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(74, 107, 175, 0.8));
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: #ffd700;
+            font-weight: bold;
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            color: white;
+            border: none;
+            padding: 18px 35px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(233, 30, 99, 0.4);
+            font-weight: bold;
+            margin-top: 2rem;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(233, 30, 99, 0.6);
+        }
+
+        /* Секции */
+        section {
+            padding: 100px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--dark);
+            font-size: 2.5rem;
+            position: relative;
+        }
+
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;background: linear-gradient(to right, var(--primary), var(--secondary));
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        /* О школе */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .about-image {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            font-weight: bold;
+        }
+
+        /* Пробное занятие */
+        .free-trial-banner {
+            background: linear-gradient(45deg, #4CAF50, #45a049);
+            color: white;
+            padding: 3rem 2rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .free-trial-banner h3 {
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .free-trial-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .free-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 2rem;
+            border-radius: 50px;
+            display: inline-block;
+        }
+
+        /* Цены */
+        .pricing-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .price-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .price-header {
+            background: linear-gradient(45deg, var(--primary), var(--dark));
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .price-header h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .price-body {
+            padding: 2.5rem;
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+
+        .price-item:hover {
+            background: #f8f9fa;
+            transform: translateX(10px);
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .service-name {
+            font-weight: 500;
+            font-size: 1.1rem;
+            color: var(--dark);
+        }
+
+        .service-desc {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        .price-value {
+            font-weight: bold;
+            color: var(--secondary);
+            font-size: 1.3rem;
+        }
+
+        /* Футер */
+        footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #1a2530 100%);
+            color: white;
+            text-align: center;
+            padding: 3rem 1rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Анимации */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .pricing-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 60px 5%;
+            }
+
+            .price-header h3 {
+                font-size: 1.3rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <!-- Навигация -->
     <header>
         <nav>
-            <div class="logo">AirGym</div>
+            <div class="logo">
+                <div class="logo-main">ЛИЛИЯ СЫЧЁВА</div>
+                <div class="logo-sub">ВОЗДУШНАЯ ШКОЛА</div>
+            </div>
             <ul>
-                <li><a href="#home">Главная</a></li>
-                <li><a href="#about">О гимнастике</a></li>
-                <li><a href="#coach">Тренер</a></li>
-                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#home" class="active">Главная</a></li>
+                <li><a href="#about">О школе</a></li>
+                <li><a href="#prices">Цены</a></li>
                 <li><a href="#contacts">Контакты</a></li>
             </ul>
         </nav>
     </header>
 
+    <!-- Герой секция -->
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Воздушная гимнастика</h1>
-            <p>Профессиональные тренировки для всех уровней</p>
-            <button onclick="scrollToSection('contacts')">Записаться на занятие</button>
+            <h1>СПОРТИВНАЯ ВОЗДУШНАЯ ШКОЛА</h1>
+            <div class="subtitle">Лилии Сычёвой</div>
+            <button class="cta-button" onclick="scrollToSection('prices')">
+                <i class="fas fa-star"></i> Узнать цены и записаться
+            </button>
         </div>
     </section>
 
-    <section id="about" class="about">
-        <h2>Что такое воздушная гимнастика?</h2>
+    <!-- О школе -->
+    <section id="about" class="about fade-in">
+        <h2 class="section-title">О нашей школе</h2>
         <div class="about-content">
             <div class="about-text">
-                <p>Воздушная гимнастика — это...</p>
-                <ul>
-                    <li>✅ Развитие гибкости и силы</li>
-                    <li>✅ Красивые элементы и трюки</li>
-                    <li>✅ Подходит для любого уровня</li>
-                    <li>✅ Групповые и индивидуальные занятия</li>
-                </ul>
+                <p>Наша школа объединяет опытных тренеров, современное оборудование и индивидуальные ресурсы для раскрытия вашего потенциала.</p>
+                <p>Присоединяйтесь к нашей команде и откройте для себя магию полета!</p>
+            </div>
+            <div class="about-image">
+                <div>Фото школы и тренировок</div>
             </div>
         </div>
     </section>
 
-    <section id="coach" class="coach">
-        <h2>О тренере</h2>
-        <div class="coach-profile">
-            <div class="coach-photo"></div>
-            <div class="coach-info">
-                <h3>Твое Имя</h3>
-                <p>Опыт: X лет</p>
-                <p>Образование: ...</p>
-                <p>Достижения: ...</p>
+    <!-- Пробное занятие -->
+    <section class="free-trial-banner fade-in">
+        <h3><i class="fas fa-gift"></i> ПРОБНОЕ ЗАНЯТИЕ</h3>
+        <p>По записи - абсолютно бесплатно!</p>
+        <div class="free-price">БЕСПЛАТНО</div>
+    </section>
+
+    <!-- Цены -->
+    <section id="prices" class="prices fade-in">
+        <h2 class="section-title">Цены на услуги</h2>
+        
+        <div class="pricing-container">
+            <!-- Групповые занятия -->
+            <div class="price-card">
+                <div class="price-header">
+                    <h3><i class="fas fa-users"></i> Групповые занятия</h3>
+                </div>
+                <div class="price-body">
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">Разовое занятие</div>
+                        </div>
+                        <div class="price-value">1 500 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">4 занятия</div>
+                            <div class="service-desc">Экономия 1 200 ₽</div>
+                        </div>
+                        <div class="price-value">4 800 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div><div class="service-name">8 занятий</div>
+                            <div class="service-desc">Экономия 3 200 ₽</div>
+                        </div>
+                        <div class="price-value">8 800 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">12 занятий</div>
+                            <div class="service-desc">Экономия 7 600 ₽</div>
+                        </div>
+                        <div class="price-value">10 400 ₽</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Персональные тренировки -->
+            <div class="price-card">
+                <div class="price-header">
+                    <h3><i class="fas fa-user-tie"></i> Персональные тренировки</h3>
+                </div>
+                <div class="price-body">
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">Персональный тренер</div>
+                            <div class="service-desc">1 час</div>
+                        </div>
+                        <div class="price-value">2 500 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">Сплит тренировка</div>
+                            <div class="service-desc">1 час, 2 человека</div>
+                        </div>
+                        <div class="price-value">3 000 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">6 персональных тренировок</div>
+                            <div class="service-desc">Действует 3 месяца</div>
+                        </div>
+                        <div class="price-value">14 000 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">Блок профессиональных занятий</div>
+                            <div class="service-desc">10 + 2 в подарок</div>
+                        </div>
+                        <div class="price-value">24 000 ₽</div>
+                    </div>
+                    <div class="price-item">
+                        <div>
+                            <div class="service-name">Блок сплит занятий</div>
+                            <div class="service-desc">10 + 2 в подарок</div>
+                        </div>
+                        <div class="price-value">29 000 ₽</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contacts" class="contacts">
-        <h2>Записаться на занятие</h2>
-        <form class="contact-form">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="tel" placeholder="Телефон" required>
-            <input type="email" placeholder="Email">
-            <textarea placeholder="Сообщение"></textarea>
-            <button type="submit">Отправить заявку</button>
-        </form>
+    <!-- Контакты -->
+    <section id="contacts" class="contacts fade-in">
+        <h2 class="section-title">Записаться на занятие</h2>
+        <div style="text-align: center; background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
+            <h3 style="color: var(--dark); margin-bottom: 2rem; font-size: 1.5rem;">
+                <i class="fas fa-phone"></i> Звоните для записи
+            </h3>
+            <div style="font-size: 2rem; font-weight: bold; color: var(--secondary); margin-bottom: 2rem;">
+                +7 (964) 527-26-89
+            </div>
+            <p style="color: #666; margin-bottom: 2rem;">
+                Обязательная предварительная запись по телефону
+            </p>
+            <button class="cta-button" onclick="alert('Позвоните по номеру: +7 (964) 527-26-89 для записи на занятие!')">
+                <i class="fas fa-phone"></i> Позвонить сейчас
+            </button>
+        </div>
     </section>
 
+    <!-- Футер -->
     <footer>
-        <p>© 2024 AirGym. Все права защищены.</p>
+        <div class="footer-content">
+            <div class="footer-logo">ЛИЛИЯ СЫЧЁВА</div>
+            <div style="font-size: 1.2rem; margin-bottom: 1rem; opacity: 0.9;">
+                ВОЗДУШНАЯ ШКОЛА
+            </div>
+            <div class="social-links"><a href="#"><i class="fab fa-vk"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <div style="opacity: 0.8; font-size: 0.9rem;">
+                © 2024 Воздушная школа Лилии Сычёвой "Синяя Огневой"
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // Плавная прокрутка
+        function scrollToSection(sectionId) {
+            document.getElementById(sectionId).scrollIntoView({
+                behavior: 'smooth'
+            });
+        }
+
+        // Анимации при прокрутке
+        function checkScroll() {
+            const elements = document.querySelectorAll('.fade-in');
+            
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Навигация
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId.startsWith('#')) {
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Запускаем проверку при загрузке и прокрутке
+        window.addEventListener('scroll', checkScroll);
+        window.addEventListener('load', checkScroll);
+
+        // Закрытие мобильного меню при клике на ссылку
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function() {
+                const nav = document.querySelector('nav ul');
+                if (nav.classList.contains('mobile-active')) {
+                    nav.classList.remove('mobile-active');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
